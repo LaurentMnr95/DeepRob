@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#BSUB -J training
+#BSUB -gpu "num=4:mode=exclusive_process:mps=no:j_exclusive=yes"
+#BSUB -n 1
+#BSUB -R "span[ptile=1]"
+#BSUB -W 1000
+#BSUB -o /linkhome/rech/grpgen/urz85ee/%J.train.out
+#BSUB -e /linkhome/rech/grpgen/urz85ee/%J.train.err
+
+ml anaconda/py3 cudnn nccl
+source activate tensorflow1.8-py3
+
+# config file start with the data type on the first line [video | frame]
+# the exec args can be parse from the second line :
+# --args1 value1 \
+# --args2 value2 ...
+
+DATA_TYPE=$(head $CONFIG_FILE --lines 1)
+PYTHON_ARGS=$(tail $CONFIG_FILE -n +2 | sed '/^#/ d' | sed '/^[[:blank:]]*$/d' | sed -e ':a' -e 'N' -e '$!ba' -e 's/\\\n/ /g')
+
+DATE_STR=$(date '+%Y-%m-%d_%H.%M.%S')
+
+# exec folder should be updated in the config/exec.cfg file
+EXEC_DIR="/linkhome/rech/grpgen/urz85ee/DeepRob"
+
+
+
+
+
+# copy config file to train folder
+
+
+export LD_LIBRARY_PATH=/pwrlocal/pub/openmpi/2.1.2/arch/gcc-4.8/lib:/pwrlocal/pub/cudnn/7.1.4/lib64:/pwrlocal/pub/nccl/2.2.13-1/lib:$LD_LIBRARY_PATH
+export CUDA_VISIBLE_DEVICES='0,1,2,3';
+exec="python3 ${EXEC_DIR}/main.py"
+eval $exec
