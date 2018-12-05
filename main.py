@@ -1,5 +1,3 @@
-import mnist
-
 from model import *
 import matplotlib.pyplot as plt
 import os
@@ -10,15 +8,15 @@ from networks import *
 #from cleverhans.model import Model,CallableModelWrapper
 #from foolbox.models import TensorFlowModel
 
-train_images = np.load('MNIST/train_images.npy')
-train_labels = np.load('MNIST/train_labels.npy')
+train_images = np.load('/linkhome/rech/grpgen/urz85ee/DeepRob/MNIST/train_images.npy')
+train_labels = np.load('/linkhome/rech/grpgen/urz85ee/DeepRob/MNIST/train_labels.npy')
 a = train_labels
 b = np.zeros((len(a), 10))
 b[np.arange(len(a)), a] = 1
 train_labels = b
 
-test_images = np.load('MNIST/test_images.npy')
-test_labels = np.load('MNIST/test_labels.npy')
+test_images = np.load('/linkhome/rech/grpgen/urz85ee/DeepRob/MNIST/test_images.npy')
+test_labels = np.load('/linkhome/rech/grpgen/urz85ee/DeepRob/MNIST/test_labels.npy')
 
 
 
@@ -55,7 +53,7 @@ for i in range(7):
                         learning_rate=0.002,
                         beta=.5,
                         model_name='CNNdpgauss'+str(i)+'noise'+str(k),
-                        checkpoint_dir="checkpoint")
+                        checkpoint_dir="/linkhome/rech/grpgen/urz85ee/DeepRob/checkpoint")
 
             cnn.train(train_images, train_labels,noise_type='Gauss',noise=noise)
 
