@@ -1,3 +1,4 @@
+import numpy as np
 from model import *
 import matplotlib.pyplot as plt
 import os
