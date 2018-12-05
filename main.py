@@ -10,15 +10,15 @@ from networks import *
 #from cleverhans.model import Model,CallableModelWrapper
 #from foolbox.models import TensorFlowModel
 
-train_images = mnist.train_images()/255
-train_labels = mnist.train_labels()
+train_images = np.load('MNIST/train_images.npy')
+train_labels = np.load('MNIST/train_labels.npy')
 a = train_labels
 b = np.zeros((len(a), 10))
 b[np.arange(len(a)), a] = 1
 train_labels = b
 
-test_images = mnist.test_images()/255
-test_labels = mnist.test_labels()
+test_images = np.load('MNIST/test_images.npy')
+test_labels = np.load('MNIST/test_labels.npy')
 
 
 
