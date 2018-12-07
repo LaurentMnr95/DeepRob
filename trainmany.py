@@ -1,4 +1,5 @@
 import os
+import numpy as np
 
 
 
@@ -20,6 +21,6 @@ range_noise+=[np.linspace(0,10,K)]
 for i in range(7):
     for k in range(K):
         noise=range_noise[i][k]
-        os.system('python3 train.py --layer '+str(i)+
+        os.system('python3 /linkhome/rech/grpgen/urz85ee/DeepRob/train.py --layer '+str(i)+
                                     '--noise'+str(noise)+
                                     '--modelname gauss'+str(i)+'sd'+str(k))
