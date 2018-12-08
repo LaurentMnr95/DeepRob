@@ -22,5 +22,5 @@ for i in range(7):
     for k in range(K):
         noise=range_noise[i][k]
         os.system('python3 /linkhome/rech/grpgen/urz85ee/DeepRob/train.py --layer '+str(i)+
-                                    '--noise'+str(noise)+
-                                    '--modelname gauss'+str(i)+'sd'+str(k))
+                                    ' --noise '+str(noise)+
+                                    ' --modelname gauss'+str(i)+'sd'+str(k))
