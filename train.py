@@ -49,7 +49,7 @@ def main(argv):
 
     with tf.Session(config=run_config) as sess:
         noise=np.zeros(1000)
-        noise[FLAGS.layer]=range_noise_i[FLAGS.noise]
+        noise[FLAGS.layer]=FLAGS.noise
 
         cnn = CNN(sess,
                     y_dim=10,
